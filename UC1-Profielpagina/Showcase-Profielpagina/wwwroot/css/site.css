@@ -18,6 +18,14 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
-    background-color: #24292e;
+    margin-bottom: 5px;
+    background-color: #181922;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 1px 0; 
+    text-align: center;
 }

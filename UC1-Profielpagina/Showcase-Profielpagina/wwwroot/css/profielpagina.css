@@ -5,40 +5,88 @@
     flex-direction: column;
     font-family: Arial;
     color: #eaeaea;
-    gap: 10px;
+    gap: 0px;
 }
 
-.personalia{ /*linkervak*/
-    background-color: #2b3137;
+.personalia {
+    background-color: #24242F;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid;
-    border-color: dimgrey;
+    border: 3px solid;
+    border-color: #1E1E29;
     border-radius: 15px 15px 15px 15px;
-    
+    margin: 5px;
 }
+
+.experiences {
+    align-items: center;
+    display: flex;
+    background-color: #20202A;
+    width: 100%;
+    flex-direction: column;
+    border: 3px solid;
+    border-color: #1E1E29;
+    border-radius: 15px 15px 15px 15px;
+    margin: 5px;
+}
+
 .skills {
     margin-top: 10px;
-    background-color: #2b3137;
+    background-color: #20202A;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid;
-    border-color: dimgrey;
+    border: 3px solid;
+    border-color: #1E1E29;
     border-radius: 15px 15px 15px 15px;
+    margin: 5px;
 }
-.experiences { /*rechtervak*/
-    background-color: #2b3137;
+
+.skillbar_container {
+    position: relative;
+    height: 10px;
+    width: 60%;
+    background-color: #191923;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.skillbar_container::after {
+    content: attr(skill-level);
+    position: absolute;
+    top: -20px;
+    right: 5px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.skillcontent_header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 5px;
     width: 100%;
-    border: 1px solid;
-    border-color: dimgrey;
-    border-radius: 15px 15px 15px 15px;
 }
+
+.skillbar {
+    height: 100%;
+    border-radius: 15px;
+    background-color: #F7C442;
+    position: relative;
+}
+
+.skillbar_percentage {
+    --percentage: 66%; 
+    width: var(--percentage); 
+}
+
 .person-logo {
-    border: 2px solid white;
+    border: 2px solid;
+    border-color: #F7C442;
     border-radius: 50%;
     margin: 10px 0px 10px 0px;
     width: 25%;
@@ -54,21 +102,26 @@
     margin: 0px 15px 0px 15px;
 }
 
-.profile_content__skills{
+.profile_content__skills {
     border: 2px solid white;
     color: white;
     margin-top: 0px;
+    margin-bottom: 0px;
     font-size: 14px;
     width: 80%;
     align-items: flex-end;
 }
-.profile-content__category-title { /*titels*/
-    color: #eaeaea;
 
+.profile-content__category-title {
+    color: #eaeaea;
+    align-items: center;
 }
+
 .profile-content__title {
-    color: #0094ff;
+    color: white;
+    font-weight: bold;
 }
+
 .profile-content__category--hidden-mobile {
     display: flex;
 }
@@ -95,8 +148,8 @@
 }
 
 .profile-content__period {
-    margin-left: auto; /* Duwt de periode naar rechts */
-    text-align: right; /* Zorgt dat de tekst rechts uitgelijnd blijft */
+    margin-left: auto;
+    text-align: right;
 }
 
 .profile-content__institute {
@@ -107,10 +160,23 @@
 
 @media only screen and (min-width: 800px) {
     .skills {
-        width: 49.7%; 
+        width: 49.7%;
     }
+
     .page {
         flex-direction: row;
+    }
+
+    .profile-content__institute {
+        font-size: 14px;
+    }
+
+    .profile-content__title {
+        font-size: 18px;
+    }
+
+    .profile_content__skills {
+        font-size: 14px;
     }
 
     .person-name {
@@ -125,6 +191,7 @@
         /*fix: anders als stipje zichtbaar*/
         .profile-content__category--hidden-mobile hr {
             width: 100%;
+            color: grey;
         }
 
     .profile-content__element--hidden-mobile {
@@ -134,8 +201,8 @@
     .profile-content__element-header {
         display: flex;
         justify-content: space-between;
-        
         width: 100%;
+        margin-bottom: 0px;
     }
 
     .profile-content__period {

@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     font-family: Arial;
+    color: white;
+    opacity: 100%;
 }
 
 .gdpr-consent {
@@ -17,6 +19,7 @@
     margin: 5px;
     border: 2px solid gray;
     border-radius: 15px 15px 15px 15px;
+    background-color: dimgrey;
 }
 
 .gdpr-consent__description{
@@ -38,9 +41,9 @@
     border: 1px solid gray;
 }
 
-.gdpr-consent__button--accept:hover {
-    background-color: #c5e3c5;
-}
+    .gdpr-consent__button--accept:hover {
+        background-color: #F7C442;
+    }
 
 .gdpr-consent__button--reject {
     padding: 10px;
@@ -52,7 +55,7 @@
     display: none;
 }
 
-.show{
+.show {
     display: block;
 }
 

@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="page">
+<section class="page">
     <section class="personalia">
 
         <img class="person-logo" src="images/person-pasfoto.png">
@@ -10,25 +10,67 @@
 
         <div class="profile-content__category--hidden-mobile">
             <h3 class="profile-content__category-title">About Me</h3>
-            <hr>
         </div>
+        <div class="custom-line--skinny"></div>
 
         <div class="profile-content__element--hidden-mobile">
             <div class="profile-content__element-header">
             </div>
             <p class="profile-content__description">
-                Hi! I'm Kollin Smits, a student at Windesheim Zwolle.
+                Hi! I'm Kollin Smits, 
+                a student at <a href="https://www.windesheim.nl" target="_blank">Windesheim Zwolle</a> studying IT software engineer.
                 I'm eager to learn, driven, and always looking for new challenges to expand my knowledge and skills.
-                On this website, I share my experience and projects. Feel free to reach out if you'd like to know more!
+                On this website, I share my experience and projects. 
+                Feel free to 
+                <a class="d-inline" style="margin:0px;" asp-area="" asp-controller="Contact" asp-action="Me">get in touch!</a>
             <p>
         </div>
 
+        <section class="experiences">
+            <div class="profile-content__category">
+                <h3 class="profile-content__category-title">Working Experience</h3>
+            </div>
+            <div class="custom-line--skinny"></div>
+
+            <div class="profile-content__element">
+                <div class="profile-content__element-header">
+                    <h4 class="profile-content__title">Logo creator</h4>
+                    <p class="profile-content__period"> 2020 - Present</p>
+                </div>
+                <p class="profile-content__institute">on my own, Zwolle</p>
+            </div>
+
+            <div class="profile-content__element">
+                <div class="profile-content__element-header">
+                    <h4 class="profile-content__title">Restaurant staff</h4>
+                    <p class="profile-content__period">august 2023 - Present</p>
+                </div>
+                <p class="profile-content__institute">Ko Shing restuarant, Zwolle</p>
+            </div>
+
+            <div class="profile-content__element">
+                <div class="profile-content__element-header">
+                    <h4 class="profile-content__title">bread department</h4>
+                    <p class="profile-content__period"> juli 2022 - may 2023</p>
+                </div>
+                <p class="profile-content__institute">Jumbo holtenbroek, Zwolle</p>
+            </div>
+
+            <div class="profile-content__element">
+                <div class="profile-content__element-header">
+                    <h4 class="profile-content__title">Warehouse employee</h4>
+                    <p class="profile-content__period"> march 2020 - Juli 2020</p>
+                </div>
+                <p class="profile-content__institute">DA drugstore, Zwolle</p>
+            </div>
+        </section>
     </section>
 
     <section class="skills">
         <div class="profile-content__category">
             <h3 class="profile-content__category-title">Skills</h3>
         </div>
+        <div class="custom-line--skinny"></div>
 
         <div class="profile-content__element">
             <div class="profile-content__element-header">
@@ -36,75 +78,11 @@
             </div>
 
             <div class="profile-content__element-header">
-                <div class="profile-content__skills">Scrum</div>
-                <div class="profile-content__period">since 2023</div>
-            </div>
-            <div class="skillbar_container" skill-level="Expert">
-                <div class="skillbar skillbar_percentage" style="width:90%;"></div>
-            </div>
-
-            <div class="profile-content__element-header">
-                <div class="profile-content__skills">PHP</div>
-                <div class="profile-content__period">since 2023</div>
-            </div>
-            <div class="skillbar_container" skill-level="Intermediate">
-                <div class="skillbar skillbar_percentage"></div>
-            </div>
-
-            <div class="profile-content__element-header">
-                <div class="profile-content__skills">Java </div>
-                <div class="profile-content__period">since 2023</div>
-            </div>
-            <div class="skillbar_container" skill-level="Intermediate">
-                <div class="skillbar skillbar_percentage"></div>
-            </div>
-
-            <div class="profile-content__element-header">
-                <div class="profile-content__skills">CSS </div>
-                <div class="profile-content__period">since 2023</div>
-            </div>
-            <div class="skillbar_container" skill-level="Intermediate">
-                <div class="skillbar skillbar_percentage"></div>
-            </div>
-
-            <div class="profile-content__element-header">
-                <div class="profile-content__skills">HTML </div>
-                <div class="profile-content__period">since 2023</div>
-            </div>
-            <div class="skillbar_container" skill-level="Intermediate">
-                <div class="skillbar skillbar_percentage"></div>
-            </div>
-
-            <div class="profile-content__element-header">
-                <div class="profile-content__skills">GIT </div>
-                <div class="profile-content__period">since 2023</div>
-            </div>
-            <div class="skillbar_container" skill-level="Intermediate">
-                <div class="skillbar skillbar_percentage"></div>
-            </div>
-
-            <div class="profile-content__element-header">
-                <div class="profile-content__skills">C++</div>
-                <div class="profile-content__period">since 2024</div>
-            </div>
-            <div class="skillbar_container" skill-level="Intermediate">
-                <div class="skillbar skillbar_percentage"></div>
-            </div>
-
-            <div class="profile-content__element-header">
-                <div class="profile-content__skills">C# </div>
-                <div class="profile-content__period">since 2024</div>
-            </div>
-            <div class="skillbar_container" skill-level="Intermediate">
-                <div class="skillbar skillbar_percentage"></div>
-            </div>
-
-            <div class="profile-content__element-header">
                 <div class="profile-content__skills">Javascript </div>
                 <div class="profile-content__period">since 2025</div>
             </div>
             <div class="skillbar_container" skill-level="Beginner">
-                <div class="skillbar skillbar_percentage" style="width:33%;"></div>
+                <div class="skillbar skillbar_percentage beginner"></div>
             </div>
 
             <div class="profile-content__element-header">
@@ -112,42 +90,88 @@
                 <div class="profile-content__period">since 2025</div>
             </div>
             <div class="skillbar_container" skill-level="Beginner">
-                <div class="skillbar skillbar_percentage" style="width:33%;"></div>
+                <div class="skillbar skillbar_percentage beginner"></div>
             </div>
+
+            <div class="profile-content__element-header">
+                <div class="profile-content__skills">C++</div>
+                <div class="profile-content__period">since 2024</div>
+            </div>
+            <div class="skillbar_container" skill-level="Average">
+                <div class="skillbar skillbar_percentage average"></div>
+            </div>
+
+            <div class="profile-content__element-header">
+                <div class="profile-content__skills">C# </div>
+                <div class="profile-content__period">since 2024</div>
+            </div>
+            <div class="skillbar_container" skill-level="Intermediate">
+                <div class="skillbar skillbar_percentage intermediate"></div>
+            </div>
+
+            <div class="profile-content__element-header">
+                <div class="profile-content__skills">Scrum</div>
+                <div class="profile-content__period">since 2023</div>
+            </div>
+            <div class="skillbar_container" skill-level="Expert">
+                <div class="skillbar skillbar_percentage expert"></div>
+            </div>
+
+            <div class="profile-content__element-header">
+                <div class="profile-content__skills">PHP</div>
+                <div class="profile-content__period">since 2023</div>
+            </div>
+            <div class="skillbar_container" skill-level="Intermediate">
+                <div class="skillbar skillbar_percentage intermediate"></div>
+            </div>
+
+            <div class="profile-content__element-header">
+                <div class="profile-content__skills">Java </div>
+                <div class="profile-content__period">since 2023</div>
+            </div>
+            <div class="skillbar_container" skill-level="Intermediate">
+                <div class="skillbar skillbar_percentage intermediate"></div>
+            </div>
+
+            <div class="profile-content__element-header">
+                <div class="profile-content__skills">CSS </div>
+                <div class="profile-content__period">since 2023</div>
+            </div>
+            <div class="skillbar_container" skill-level="Intermediate">
+                <div class="skillbar skillbar_percentage intermediate"></div>
+            </div>
+
+            <div class="profile-content__element-header">
+                <div class="profile-content__skills">HTML </div>
+                <div class="profile-content__period">since 2023</div>
+            </div>
+            <div class="skillbar_container" skill-level="Intermediate">
+                <div class="skillbar skillbar_percentage intermediate"></div>
+            </div>
+
+            <div class="profile-content__element-header">
+                <div class="profile-content__skills">GIT </div>
+                <div class="profile-content__period">since 2023</div>
+            </div>
+            <div class="skillbar_container" skill-level="Intermediate">
+                <div class="skillbar skillbar_percentage intermediate"></div>
+            </div>
+
         </div>
 
         <div class="profile-content__element">
             <div class="profile-content__element-header">
                 <h4 class="profile-content__title">Soft skills </h4>
             </div>
-            <p class="profile-content__skills">Communication, Flexible workstyle, Time management, Decision making</p>
+            <ul class="profile-content__skills">
+                <li>Communication</li>
+                <li>Flexible workstyle</li>
+                <li>Time management</li>
+                <li>Decision making</li>
+            </ul>
         </div>
+
     </section>
-</div>
-    
-
-
-
-<section class="experiences">
-    <div class="profile-content__category">
-        <h3 class="profile-content__category-title">Experiences</h3>
-        <hr>
-    </div>
-
-    <div class="profile-content__element">
-        <div class="profile-content__element-header">
-            <h4 class="profile-content__title">Restaurant staff</h4>
-            <p class="profile-content__period">august 2023 - jan 2025</p>
-        </div>
-        <p class="profile-content__institute">Catering industry, Zwolle</p>
-    </div>
-
-    <div class="profile-content__element">
-        <div class="profile-content__element-header">
-            <h4 class="profile-content__title">bread department</h4>
-            <p class="profile-content__period"> march 2022 - may 2023</p>
-        </div>
-        <p class="profile-content__institute">Supermarket, Zwolle</p>
-    </div>
-
 </section>
+
+

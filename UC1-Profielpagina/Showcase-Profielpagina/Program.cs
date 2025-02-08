@@ -1,7 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
-
+HttpResponseMessage response = new HttpResponseMessage();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

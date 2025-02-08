@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ShowcaseAPI.Models
+namespace Showcase_Profielpagina.Models
 {
     public class Contactform
     {
@@ -20,9 +20,10 @@ namespace ShowcaseAPI.Models
         [Phone]
         public string Phone { get; set; }
 
+
         [Required]
         [StringLength(60)]
-        public string Subject{ get; set; }
+        public string Subject { get; set; }
 
         [Required]
         [StringLength(60)]

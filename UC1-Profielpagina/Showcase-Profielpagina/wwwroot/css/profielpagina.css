@@ -1,38 +1,48 @@
-﻿
+﻿:root {
+    --primary-color: #24242F; /* lichtste primaire kleur */
+    --secondary-color: #20202A; /* donkerder blauw secundaire kleur */
+    --accent-color: #F7C442; /* Gele accentkleur */
+    --border-color: #1E1E29; /* border */
+    --text-color: white;
+    --beginner: 25%;
+    --average: 50%;
+    --intermediate: 75%;
+    --expert: 100%;
+}
 .page {
     display: flex;
     flex-direction: column;
     font-family: Arial;
-    color: white;
+    color: var(--text-color);
 }
 
 .personalia {
     max-width: 600px;
-    background-color: #24242F;
+    background-color: var(--primary-color);
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 4px solid #1E1E29;
+    border: 4px solid var(--border-color);
 }
 
 .experiences {
     max-width: 700px;
     align-items: center;
     display: flex;
-    background-color: #20202A;
+    background-color: var(--secondary-color);
     width: 100%;
     flex-direction: column;
-    border: 4px solid #1E1E29;
+    border: 4px solid var(--border-color);
 }
 
 .skills {
-    background-color: #20202A;
+    background-color: var(--secondary-color);
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 4px solid #1E1E29;
+    border: 4px solid var(--border-color);
 }
 
 .skillbar_container {
@@ -66,15 +76,8 @@
 .skillbar {
     height: 100%;
     border-radius: 15px;
-    background-color: #F7C442;
+    background-color: var(--accent-color);
     position: relative;
-}
-
-:root {
-    --beginner: 25%;
-    --average: 50%;
-    --intermediate: 75%;
-    --expert: 100%;
 }
 
 .skillbar_percentage.beginner {
@@ -110,7 +113,7 @@
 
 .person-logo {
     border: 2px solid;
-    border-color: #F7C442;
+    border-color: var(--accent-color);
     border-radius: 50%;
     margin: 10px 0px 10px 0px;
     width: 25%;
@@ -143,12 +146,12 @@
 }
 
 .profile-content__category-title {
-    color: white;
+    color: var(--text-color);
     align-items: center;
 }
 
 .profile-content__title {
-    color: white;
+    color: var(--text-color);
     font-weight: bold;
 }
 
@@ -162,7 +165,7 @@
     align-items: flex-start;
     width: 95%;
     margin: 0px;
-    color: white;
+    color: var(--text-color);
 }
 
 .profile-content__element--hidden-mobile {
@@ -183,7 +186,7 @@
 }
 
 .profile-content__institute {
-    color: #F7C442;
+    color: var(--accent-color);
     margin-top: 0px;
     font-size: 14px;
 }
@@ -236,9 +239,7 @@
 
     .profile-content__period {
         font-size: 12px;
-        color: #ffffff;
+        color: var(--accent-color);
         display: flex;
     }
 }
-
-

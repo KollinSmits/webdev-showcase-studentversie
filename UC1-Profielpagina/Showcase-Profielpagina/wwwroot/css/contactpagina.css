@@ -1,0 +1,123 @@
+﻿:root {
+    --primary-color: #24242F; /* lichtste primaire kleur */
+    --secondary-color: #20202A; /* donkerder blauw secundaire kleur */
+    --accent-color: #F7C442; /* Gele accentkleur */
+    --border-color: #1E1E29; /* border */
+    --text-color: white;
+}
+
+.form-contactpagina{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.contact {
+    padding: 30px;
+    border-radius: 10px;
+    border: 3px solid white;
+    border: 2px solid;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+.contactpage{
+    display:flex;
+    align-items: center;
+    flex-direction:column;
+}
+
+.contact {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+
+h1 {
+    text-align: center;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+p {
+    text-align: center;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.form-contactpagina {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-contactpagina__inputelement {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+input[type="subject"],
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    padding: 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    outline: none;
+}
+
+textarea[name="message"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 16px;
+    resize: vertical;
+    outline: none;
+}
+
+    textarea[name="message"]:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 5px var(--primary-color);
+    }
+
+input[type="subject"]:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    border-color: var(--accent-color);
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+    input[type="submit"]:hover {
+        opacity: 0.8;
+    }

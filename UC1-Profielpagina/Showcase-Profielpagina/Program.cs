@@ -5,7 +5,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 
 var app = builder.Build();
-
+app.Use(async (context, next) => {
+    context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' https://trusted-source.com;";
+    await next();
+});
 app.UseStaticFiles(new StaticFileOptions {
     OnPrepareResponse = ctx => {
         var fileName = ctx.File.Name;
@@ -28,7 +31,7 @@ app.Use(async (context, next) => {
 
     await next();
 });
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

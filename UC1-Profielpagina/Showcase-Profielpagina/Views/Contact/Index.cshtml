@@ -7,124 +7,64 @@
     <section class="contact">
 
         <h1>Contact</h1>
-        <p>@ViewBag.Message</p>
         <form method="post" class="form-contactpagina">
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="firstname">Voornaam: </label>
-                <input type="text" asp-for="FirstName" name="firstname" id="firstname" required>
+                <label for="firstname">First name: * </label>
+                <input type="text" asp-for="FirstName" name="firstname" id="firstname" required
+                       min="2"
+                       maxlength="20"
+                       pattern="[A-Za-z]+"
+                       title="The firstname can only contain letters.">
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="lastname">Achternaam: </label>
-                <input type="text" asp-for="LastName" name="lastname" id="lastname" required>
+                <label for="lastname">Last name: * </label>
+                <input type="text" asp-for="LastName" name="lastname" id="lastname" required
+                       min="2"
+                       maxlength="20"
+                       pattern="[A-Za-z]+"
+                       title="The last name can only contain letters.">
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="email">E-mailadres: </label>
-                <input type="email" asp-for="Email" name="email" id="email">
+                <label for="email">E-mailadres: * </label>
+                <input type="email" asp-for="Email" name="email" id="email" required
+                       maxlength="30"
+                       title="Please enter a valid email address.">
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="phone">Telefoonnummer: </label>
-                <input type="tel" asp-for="Phone" name="phone" id="phone">
-            </div>
-            
-            <div class="form-contactpagina__inputelement fx-col">
-                <label for="Subject">Subject: </label>
-                <input type="text" asp-for="Subject" name="Subject" id="Subject">
+                <label for="phone">Phone number: * </label>
+                <input type="tel" asp-for="Phone" name="phone" id="phone" required
+                       minlength="8"
+                       maxlength="15"
+                       pattern="[0-9]+"
+                       title="Please enter a valid phone number (only digits allowed)">
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="Message">Message: </label>
-                <input type="text" asp-for="Message" name="Message" id="Message">
+                <label for="Subject">Subject: * </label>
+                <input type="text" asp-for="Subject" name="subject" id="subject" required
+                       maxlength="30">
+            </div>
+
+            <div class="form-contactpagina__inputelement fx-col">
+                <label for="Message">Message: * </label>
+                <textarea type="textarea" asp-for="Message" name="message" id="message" required
+                          minlength="20"
+                          maxlength="200"></textarea>
             </div>
 
 
             <div class="form-contactpagina__inputelement">
-                <input type="submit" value="Verstuur!">
+                <input type="submit" value="Send!">
             </div>
 
         </form>
         @Html.AntiForgeryToken()
     </section>
 </div>
+<script scr="~/js/form.js"></script>
 
 
-
-<script>
-     /* mag niet in html moet in js bestand
-    //    const inputEmail = document.getElementById('email');
-
-
-    //    const validateEmail = () => {
-    //        if (inputEmail.validity.typeMismatch) {
-    //            inputEmail.setCustomValidity("Voer een geldig e-mailadres in!");
-    //            inputEmail.reportValidity();
-    //        } else if (inputEmail.value.length > 80) {
-    //            inputEmail.setCustomValidity("Email moet niet langer dan 80 tekens zijn!");
-    //        } else {
-    //            inputEmail.setCustomValidity("");
-    //        }
-    //    }
-
-    //    const validateForm = () => {
-    //        validateEmail();
-    //    }
-
-    //    // Event listener voor email
-    //    // Aanbevolen events voor formulieren: https://github.com/Windesheim-HBO-ICT/client_studenten/blob/main/lessen/week-2/les-1/form-constraint-validation-api/studentversie/events-voor-invoer-validatie.md
-    //    inputEmail.addEventListener("blur", validateEmail);
-    //    inputEmail.addEventListener("input", validateEmail);
-
-    //    // Selecteer het formelement
-    //    const form = document.querySelector('.form-contactpagina');
-
-    //    // Event listener voor formulierinzending
-    //    form.addEventListener('submit', function (event) {
-    //        event.preventDefault(); // Voorkom standaard formulierinzending
-
-    //       // Valideer alle velden voor de zekerheid
-    //        validateForm();
-
-    //        // Verkrijg CSRF-token van het formulier
-    //        const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
-
-    //        // Serialiseer formuliergegevens
-    //        const formData = new URLSearchParams();
-
-    //        formData.append('email', form.email.value);
-
-    //        formData.append('__RequestVerificationToken', csrfToken); // Voeg CSRF-token toe
-
-    //        // Voer een POST-verzoek uit
-    //        fetch('/contact', {
-    //            method: 'POST',
-    //            headers: {
-    //                'Content-Type': 'application/x-www-form-urlencoded' // Stel de inhoudstype in
-    //            },
-    //            body: formData // Stuur de geserialiseerde formuliergegevens als de body
-    //        })
-    //            .then(response => {
-    //                if (!response.ok) {
-    //                    throw new Error('Netwerkrespons was niet ok');
-    //                }
-    //                return response.text();
-    //            })
-    //            .then(data => {
-    //                // Verwerk succesvolle formulierinzending
-    //                console.log('Formulier succesvol ingediend:', data);
-    //                // Optioneel: je kunt hier een redirect uitvoeren of een succesbericht tonen
-    //            })
-    //            .catch(error => {
-    //                console.error('Er was een probleem met de formulierinzending:', error);
-
-    //                alert(error.message)
-
-    //                // Verwerk fouten hier
-    //            });
-    //    });
-
-
-
-</script>

@@ -3,8 +3,10 @@ class GDPR {
         if (GDPR.cookieStatus() === 'accept') {
             this.hideGDPR();
             return;
+        } else if (GDPR.cookieStatus() === 'reject') {
+            this.hideGDPR();
+            return;
         }
-
 
         this.showStatus();
         this.showContent();

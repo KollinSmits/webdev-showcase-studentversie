@@ -6,33 +6,21 @@
     --text-color: white;
 }
 
-.form-contactpagina{
+.form-contactpagina {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
-.contact {
-    padding: 30px;
-    border-radius: 10px;
-    border: 3px solid white;
-    border: 2px solid;
-    max-width: 500px;
-    width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 0 auto;
-}
-
-.contactpage{
-    display:flex;
+.contactpage {
+    display: flex;
     align-items: center;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 .contact {
     background-color: var(--secondary-color);
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
     border: 2px solid var(--border-color);
     max-width: 500px;
@@ -63,6 +51,7 @@ p {
 .form-contactpagina__inputelement {
     display: flex;
     flex-direction: column;
+    width: 300px;
 }
 
 label {
@@ -74,7 +63,8 @@ label {
 input[type="subject"],
 input[type="text"],
 input[type="email"],
-input[type="tel"] {
+input[type="tel"],
+textarea {
     padding: 10px;
     border: 1px solid var(--text-color);
     border-radius: 5px;
@@ -83,29 +73,41 @@ input[type="tel"] {
     outline: none;
 }
 
-textarea[name="message"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    font-size: 16px;
-    resize: vertical;
-    outline: none;
-}
-
-    textarea[name="message"]:focus {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 5px var(--primary-color);
+    textarea[name="message"] {
+        width: 100%;
+        padding: 18px;
+        border: 1px solid var(--text-color);
+        border-radius: 5px;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        font-size: 16px;
+        resize: vertical;
+        outline: none;
     }
 
-input[type="subject"]:focus,
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus {
-    border-color: var(--accent-color);
-}
+        textarea[name="message"]:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+    input:focus,
+    textarea:focus {
+        border-color: var(--accent-color);
+    }
+
+       input:focus:user-invalid,
+        textarea:focus:user-invalid {
+            border-color: red;
+        }
+        
+        input:user-invalid,
+        textarea:user-invalid{
+            border-color: red;
+        }
+        input:focus:invalid,
+        textarea:focus:invalid {
+            border-color: red;
+        }
 
 input[type="submit"] {
     padding: 10px;
@@ -121,3 +123,8 @@ input[type="submit"] {
     input[type="submit"]:hover {
         opacity: 0.8;
     }
+
+
+input:is(:-webkit-autofill, :autofill) {
+    background-color: var(--secondary-color);
+}

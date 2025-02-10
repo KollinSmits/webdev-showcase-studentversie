@@ -183,6 +183,7 @@
 .profile-content__period {
     margin-left: auto;
     text-align: right;
+    color: var(--text-color);
 }
 
 .profile-content__institute {
@@ -235,11 +236,12 @@
         justify-content: space-between;
         width: 100%;
         margin-bottom: 0px;
+        color: var(--text-color);
     }
 
     .profile-content__period {
         font-size: 12px;
-        color: var(--accent-color);
+        color: var(--text-color);
         display: flex;
     }
 }

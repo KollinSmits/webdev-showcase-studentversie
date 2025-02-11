@@ -1,4 +1,10 @@
-﻿const inputEmail = document.getElementById('email');
+﻿document.querySelector("form").addEventListener("submit", function (event) {
+    event.preventDefault();  
+    let formData = new FormData(event.target);
+    console.log(Object.fromEntries(formData.entries())); // Laat de data zien
+});
+
+const inputEmail = document.getElementById('email');
 const inputFirstName = document.getElementById('firstname');
 const inputLastName = document.getElementById('lastname');
 const inputPhone = document.getElementById('phone');
@@ -95,16 +101,20 @@ form.addEventListener('submit', function (event) {
     const formData = new URLSearchParams();
 
     formData.append('email', form.email.value);
-
+    formData.append('firstname', inputFirstName.value);
+    formData.append('lastname', inputLastName.value);
+    formData.append('phone', inputPhone.value);
+    formData.append('subject', inputSubject.value);
+    formData.append('message', inputMessage.value);
     formData.append('__RequestVerificationToken', csrfToken); // Voeg CSRF-token toe
 
     // Voer een POST-verzoek uit
     fetch('/contact', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded' // Stel de inhoudstype in
+            'Content-Type': 'application/json' // Stel de inhoudstype in
         },
-        body: formData // Stuur de geserialiseerde formuliergegevens als de body
+        body: JSON.stringify(Object.fromEntries(formData))// Stuur de geserialiseerde formuliergegevens als de body
     })
         .then(response => {
             if (!response.ok) {
@@ -117,6 +127,7 @@ form.addEventListener('submit', function (event) {
             // Verwerk succesvolle formulierinzending
             console.log('Formulier succesvol ingediend:', data);
             alert("Formulier succesvol verzonden!");
+            return false;
             // Optioneel: je kunt hier een redirect uitvoeren of een succesbericht tonen
         })
         .catch(error => {

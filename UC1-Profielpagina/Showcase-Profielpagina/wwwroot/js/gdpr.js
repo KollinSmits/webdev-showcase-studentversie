@@ -54,7 +54,6 @@ class GDPR {
         console.log(GDPR.cookieStatus() === null ? 'Niet gekozen' : GDPR.cookieStatus());
     }
 
-
     hideGDPR() {
         const gdprSection = document.querySelector('.gdpr-consent');
         if (gdprSection) {

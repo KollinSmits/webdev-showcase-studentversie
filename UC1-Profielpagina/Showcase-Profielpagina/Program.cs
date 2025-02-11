@@ -1,9 +1,11 @@
+using Showcase_Profielpagina.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 HttpResponseMessage response = new HttpResponseMessage();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
-
+builder.Services.AddHttpClient<ContactController>();
 var app = builder.Build();
 app.Use(async (context, next) => {
     context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' https://trusted-source.com;";

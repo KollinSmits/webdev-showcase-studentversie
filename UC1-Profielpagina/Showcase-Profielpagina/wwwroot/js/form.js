@@ -1,17 +1,11 @@
-﻿document.querySelector("form").addEventListener("submit", function (event) {
-    event.preventDefault();  
-    let formData = new FormData(event.target);
-    console.log(Object.fromEntries(formData.entries())); // Laat de data zien
-});
-
-const inputEmail = document.getElementById('email');
+﻿const inputEmail = document.getElementById('email');
 const inputFirstName = document.getElementById('firstname');
 const inputLastName = document.getElementById('lastname');
 const inputPhone = document.getElementById('phone');
 const inputSubject = document.getElementById('subject');
 const inputMessage = document.getElementById('message');
 
-// validatie voor email 
+
 const validateEmail = () => {
     if (inputEmail.validity.typeMismatch) {
         inputEmail.setCustomValidity("Voer een geldig e-mailadres in!");
@@ -23,20 +17,36 @@ const validateEmail = () => {
     }
 };
 
-// validatie voor voor en achternaam
-const validateName = (input) => {
-    const nameRegex = /^[a-zA-Z]+$/;
-    if (!nameRegex.test(input.value)) {
-        input.setCustomValidity("Mag alleen letters bevatten.");
-    } else if (input.value.length > 20) {
-        input.setCustomValidity("Mag niet langer dan 20 tekens zijn.");
+const validateFirstName = () => {
+    if (inputFirstName.value.trim() === "") {
+        inputFirstName.setCustomValidity("Voornaam is verplicht.");
+        inputFirstName.reportValidity();
+        return false;
+    } else if (inputFirstName.value.length > 60) {
+        inputFirstName.setCustomValidity("Voornaam mag niet langer dan 60 tekens zijn.");
+        inputFirstName.reportValidity();
+        return false;
     } else {
-        input.setCustomValidity("");
+        inputFirstName.setCustomValidity("");
+        return true;
     }
-    input.reportValidity();
 };
 
-// Validatie voor Phonenumber (alleen cijfers, 8-15 tekens)
+const validateLastName = () => {
+    if (inputLastName.value.trim() === "") {
+        inputLastName.setCustomValidity("Achternaam is verplicht.");
+        inputLastName.reportValidity();
+        return false;
+    } else if (inputLastName.value.length > 60) {
+        inputLastName.setCustomValidity("Achternaam mag niet langer dan 60 tekens zijn.");
+        inputLastName.reportValidity();
+        return false;
+    } else {
+        inputLastName.setCustomValidity("");
+        return true;
+    }
+};
+
 const validatePhone = () => {
     const phoneRegex = /^[0-9]{8,15}$/;
     if (!phoneRegex.test(inputPhone.value)) {
@@ -47,7 +57,6 @@ const validatePhone = () => {
     inputPhone.reportValidity();
 };
 
-// Validatie voor Subject (max. 30 tekens)
 const validateSubject = () => {
     if (inputSubject.value.length > 30) {
         inputSubject.setCustomValidity("Onderwerp mag niet langer dan 30 tekens zijn.");
@@ -57,7 +66,6 @@ const validateSubject = () => {
     inputSubject.reportValidity();
 };
 
-// Validatie voor Message (20-200 tekens)
 const validateMessage = () => {
     if (inputMessage.value.length < 20 || inputMessage.value.length > 200) {
         inputMessage.setCustomValidity("Bericht moet tussen 20 en 200 tekens zijn.");
@@ -67,74 +75,70 @@ const validateMessage = () => {
     inputMessage.reportValidity();
 };
 
-const validateForm = () => {
-    validateEmail();
-    validateMessage();
-    validateName();
-    validatePhone();
-    validateSubject();
-}
 
-// Event listener voor email
-// Aanbevolen events voor formulieren: https://github.com/Windesheim-HBO-ICT/client_studenten/blob/main/lessen/week-2/les-1/form-constraint-validation-api/studentversie/events-voor-invoer-validatie.md
 inputEmail.addEventListener("blur", validateEmail);
 inputEmail.addEventListener("input", validateEmail);
-inputFirstName.addEventListener("input", () => validateName(inputFirstName));
-inputLastName.addEventListener("input", () => validateName(inputLastName));
-inputPhone.addEventListener("input", validatePhone);
+
+inputSubject.addEventListener("blur", validateSubject);
 inputSubject.addEventListener("input", validateSubject);
+
+inputFirstName.addEventListener("blur", validateFirstName);
+inputFirstName.addEventListener("input", validateFirstName);
+
+inputLastName.addEventListener("blur", validateLastName);
+inputLastName.addEventListener("input", validateLastName);
+
+inputPhone.addEventListener("blur", validatePhone);
+inputPhone.addEventListener("input", validatePhone);
+
+inputMessage.addEventListener("blur", validateMessage);
 inputMessage.addEventListener("input", validateMessage);
 
-// Selecteer het formelement
-const form = document.querySelector('.form-contactpagina');
+const form = document.getElementById('contactform');
+form.addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-// Event listener voor formulierinzending
-form.addEventListener('submit', function (event) {
-    event.preventDefault(); // Voorkom standaard formulierinzending
+    //document.getElementById('test1').innerHTML = '<span class="loader"></span>';
 
-    validateForm();
+    //let span = document.createElement('span');
+    //span.className = 'loader'
+    //document.body.appendChild(span);
+    //document.getElementById('test1').appendChild(span);
 
-    // Verkrijg CSRF-token van het formulier
     const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
 
-    // Serialiseer formuliergegevens
     const formData = new URLSearchParams();
 
-    formData.append('email', form.email.value);
+    formData.append('email', inputEmail.value);
     formData.append('firstname', inputFirstName.value);
     formData.append('lastname', inputLastName.value);
     formData.append('phone', inputPhone.value);
     formData.append('subject', inputSubject.value);
     formData.append('message', inputMessage.value);
-    formData.append('__RequestVerificationToken', csrfToken); // Voeg CSRF-token toe
+    formData.append('__RequestVerificationToken', csrfToken);
 
-    // Voer een POST-verzoek uit
-    fetch('/contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json' // Stel de inhoudstype in
-        },
-        body: JSON.stringify(Object.fromEntries(formData))// Stuur de geserialiseerde formuliergegevens als de body
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Networkrespons was not ok');
-                alert("network not responding")
-            }
-            return response.text();
-        })
-        .then(data => {
-            // Verwerk succesvolle formulierinzending
-            console.log('Formulier succesvol ingediend:', data);
-            alert("Formulier succesvol verzonden!");
-            return false;
-            // Optioneel: je kunt hier een redirect uitvoeren of een succesbericht tonen
-        })
-        .catch(error => {
-            console.error('Er was een probleem met de formulierinzending:', error);
+    try {
 
-            alert(error.message)
-
-            // Verwerk fouten hier
+        const response = await fetch('/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
         });
+
+        if (!response.ok) {
+            throw new Error('Netwerkrespons was niet ok');
+        }
+        form.reset();
+        console.log("het formulier is verzonden!");
+
+    } catch (error) {
+        console.error('Er was een probleem met de formulierinzending:', error);
+        form.reset();
+
+
+    }
+
+
 });

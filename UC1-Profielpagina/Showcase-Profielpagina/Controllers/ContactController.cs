@@ -8,15 +8,17 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Net.Http;
+using System.Text.RegularExpressions;
+using System.Net.NetworkInformation;
 
 namespace Showcase_Profielpagina.Controllers
 {
     public class ContactController : Controller
     {
         private readonly HttpClient _httpClient;
-        public ContactController(HttpClient httpClient)
+        public ContactController(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClientFactory.CreateClient();
             _httpClient.BaseAddress = new Uri("https://localhost:7278");
         }
 
@@ -32,7 +34,7 @@ namespace Showcase_Profielpagina.Controllers
         public async Task<ActionResult> Index(Contactform form)
         {
             Console.WriteLine("");
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ViewBag.Message = "De ingevulde velden voldoen niet aan de gestelde voorwaarden";
                 return View();
@@ -45,7 +47,7 @@ namespace Showcase_Profielpagina.Controllers
 
             var json = JsonConvert.SerializeObject(form, settings);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _httpClient.PostAsync("api/mail", content); // Vervang deze regel met het POST-request
+            HttpResponseMessage response = await _httpClient.PostAsync("/api/mail", content); 
 
             if(!response.IsSuccessStatusCode)
             {

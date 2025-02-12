@@ -60,10 +60,7 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="subject"],
-input[type="text"],
-input[type="email"],
-input[type="tel"],
+input,
 textarea {
     padding: 10px;
     border: 1px solid var(--text-color);
@@ -73,41 +70,42 @@ textarea {
     outline: none;
 }
 
-    textarea[name="message"] {
-        width: 100%;
-        padding: 18px;
-        border: 1px solid var(--text-color);
-        border-radius: 5px;
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        font-size: 16px;
-        resize: vertical;
-        outline: none;
-    }
+textarea {
+    width: 100%;
+    padding: 18px;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 16px;
+    resize: vertical;
+    outline: none;
+}
 
-        textarea[name="message"]:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 5px var(--primary-color);
-        }
+    textarea:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 5px var(--primary-color);
+    }
 
     input:focus,
     textarea:focus {
         border-color: var(--accent-color);
     }
 
-       input:focus:user-invalid,
+        input:focus:user-invalid,
         textarea:focus:user-invalid {
             border-color: red;
         }
-        
-        input:user-invalid,
-        textarea:user-invalid{
-            border-color: red;
-        }
-        input:focus:invalid,
-        textarea:focus:invalid {
-            border-color: red;
-        }
+
+    input:user-invalid,
+    textarea:user-invalid {
+        border-color: red;
+    }
+
+    input:focus:invalid,
+    textarea:focus:invalid {
+        border-color: red;
+    }
 
 input[type="submit"] {
     padding: 10px;
@@ -127,4 +125,38 @@ input[type="submit"] {
 
 input:is(:-webkit-autofill, :autofill) {
     background-color: var(--secondary-color);
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid #FFF;
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+    .loader::after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border-bottom: 4px solid var(--accent-color);
+        border-left: 4px solid transparent;
+    }
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

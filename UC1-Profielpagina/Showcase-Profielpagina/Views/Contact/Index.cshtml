@@ -4,10 +4,9 @@
 }
 
 <div class="contactpage">
-    <section class="contact">
-
+    <section class="contact" id="test">
         <h1>Contact</h1>
-        <form method="post" class="form-contactpagina">
+        <form method="post" class="form-contactpagina" id="contactform">
 
             <div class="form-contactpagina__inputelement fx-col">
                 <label for="firstname">First name: * </label>
@@ -56,15 +55,14 @@
                           maxlength="200"></textarea>
             </div>
 
-
+            
             <div class="form-contactpagina__inputelement">
                 <input type="submit" value="Send!">
             </div>
-
         </form>
         @Html.AntiForgeryToken()
     </section>
 </div>
-<script scr="~/js/form.js"></script>
+<script src="/js/form.js"></script>
 
 

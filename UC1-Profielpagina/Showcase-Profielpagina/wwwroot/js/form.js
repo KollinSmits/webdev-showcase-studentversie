@@ -7,9 +7,10 @@ const inputMessage = document.getElementById('message');
 
 
 const validateEmail = () => {
-    if (inputEmail.validity.typeMismatch) {
+    const emailRegex = /^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,17})$/;
+
+    if (!emailRegex.test(inputEmail.value)) {
         inputEmail.setCustomValidity("Voer een geldig e-mailadres in!");
-        inputEmail.reportValidity();
     } else if (inputEmail.value.length > 30) {
         inputEmail.setCustomValidity("Email moet niet langer dan 30 tekens zijn!");
     } else {
@@ -95,15 +96,55 @@ inputMessage.addEventListener("blur", validateMessage);
 inputMessage.addEventListener("input", validateMessage);
 
 const form = document.getElementById('contactform');
+
+const createMessageContainer = () => {
+    let messageContainer;
+    if (!messageContainer) {
+        messageContainer = document.createElement("div");
+        messageContainer.id = "messageContainer";
+        messageContainer.style.position = "fixed";
+        messageContainer.style.top = "10px";
+        messageContainer.style.left = "50%";
+        messageContainer.style.transform = "translateX(-50%)";
+        messageContainer.style.padding = "10px";
+        messageContainer.style.border = "3px solid #ccc";
+        messageContainer.style.borderRadius = "5px";
+        messageContainer.style.color = "#ffffff";
+        messageContainer.style.display = "none";
+        document.body.appendChild(messageContainer);
+    }
+    return messageContainer;
+};
+
+const showMessage = (message, isSuccess) => {
+    const messageContainer = createMessageContainer();
+    messageContainer.textContent = message;
+    messageContainer.style.backgroundColor = isSuccess ? "green" : "red";
+    messageContainer.style.display = "block";
+    document.getElementById("contactsection").appendChild(messageContainer);
+    
+    setTimeout(() => {
+        messageContainer.style.display = "none";
+    }, 3000);
+};
+let span = document.createElement('span');
+function showLoader() {
+    span.className = 'loader'
+    document.getElementById('contactform').appendChild(span);
+}
+
+function hideLoader() {
+    document.getElementsByName('submitButton').disabled = false;
+    if (span) {
+        span.remove();
+    }
+}
+
 form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    //document.getElementById('test1').innerHTML = '<span class="loader"></span>';
-
-    //let span = document.createElement('span');
-    //span.className = 'loader'
-    //document.body.appendChild(span);
-    //document.getElementById('test1').appendChild(span);
+    document.getElementById('submitButton').disabled = true;
+    showLoader();
 
     const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
 
@@ -118,6 +159,7 @@ form.addEventListener('submit', async function (event) {
     formData.append('__RequestVerificationToken', csrfToken);
 
     try {
+        form.reset();
 
         const response = await fetch('/contact', {
             method: 'POST',
@@ -128,15 +170,17 @@ form.addEventListener('submit', async function (event) {
         });
 
         if (!response.ok) {
-            throw new Error('Netwerkrespons was niet ok');
+            throw new Error('Netwerkrespons was not ok');
         }
-        form.reset();
-        console.log("het formulier is verzonden!");
+        hideLoader();
+        showMessage("the form is submitted!", true);
+        console.log("the form is submitted!");
 
     } catch (error) {
-        console.error('Er was een probleem met de formulierinzending:', error);
         form.reset();
-
+        console.error('there was a problem with the submited form:', error);
+        hideLoader();
+        showMessage("the form was not submitted", false);
 
     }
 

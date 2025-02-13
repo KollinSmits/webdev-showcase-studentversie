@@ -16,12 +16,15 @@ namespace ShowcaseAPI.Models
 
         [Required(ErrorMessage = "The e-mailadres is required.")]
         [EmailAddress]
-        [MaxLength(30, ErrorMessage = "Your e-mailadres can only be 30 characters long.")]
+        [RegularExpression(@"^([0-9a-zA-Z]" +
+                               @"([\+\-_\.][0-9a-zA-Z]+)*" +
+                               @")+" +
+                               @"@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,17})$", ErrorMessage ="email is invalid")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "The phone number is required.")]
         [Phone(ErrorMessage = "Please enter a valid phone number.")]
-        [StringLength(15, MinimumLength = 8, ErrorMessage = "The phone number must be between 8 and 15 digits long.")]
+        [RegularExpression(@"^+?[0-9]{10,15}$", ErrorMessage = "phone number can only contain numbers and needs to be 8-15 numbers long")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "The subject is required.")]

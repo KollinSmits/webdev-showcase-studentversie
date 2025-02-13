@@ -23,15 +23,15 @@ namespace ShowcaseAPI.Controllers {
             List<string> errors = new List<string>();
 
             if (string.IsNullOrWhiteSpace(contactform.FirstName) || !Regex.IsMatch(contactform.FirstName, @"^[a-zA-Z]+$"))
-                errors.Add("Voornaam is verplicht en mag alleen letters bevatten.");
+                errors.Add("Fistname is required and can only contain letters.");
 
             if (string.IsNullOrWhiteSpace(contactform.LastName) || !Regex.IsMatch(contactform.LastName, @"^[a-zA-Z]+$"))
-                errors.Add("Achternaam is verplicht en mag alleen letters bevatten.");
+                errors.Add("Lastname is required and can only contain letters.");
 
             if (string.IsNullOrWhiteSpace(contactform.Email) || !Regex.IsMatch(contactform.Email, mailregex))
-                errors.Add("Ongeldig e-mailadres.");
+                errors.Add("fistname is required and email in incorrect.");
 
-            if (string.IsNullOrWhiteSpace(contactform.Phone) || !Regex.IsMatch(contactform.Phone, @"^\+?\d{10,15}$"))
+            if (string.IsNullOrWhiteSpace(contactform.Phone) || !Regex.IsMatch(contactform.Phone, @"^+?[0-9]{10,15}$"))
                 errors.Add("Ongeldig telefoonnummer. Gebruik alleen cijfers en eventueel een landcode.");
 
             if (string.IsNullOrWhiteSpace(contactform.Subject))

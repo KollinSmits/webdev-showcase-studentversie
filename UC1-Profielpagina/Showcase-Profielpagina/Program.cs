@@ -8,7 +8,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<ContactController>();
 var app = builder.Build();
 app.Use(async (context, next) => {
-    context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' https://trusted-source.com;";
+    //context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' https://trusted-source.com;";
     await next();
 });
 app.UseStaticFiles(new StaticFileOptions {
@@ -27,7 +27,7 @@ app.UseStaticFiles(new StaticFileOptions {
 app.Use(async (context, next) => {
     context.Response.OnStarting(() => {
         context.Response.Headers.Remove("Server"); // Verwijder 'Server'-header
-        context.Response.Headers.Add("X-Content-Type-Options", "nosniff"); // Voeg beveiligingsheader toe
+        //context.Response.Headers.Add("X-Content-Type-Options", "nosniff"); // Voeg beveiligingsheader toe
         return Task.CompletedTask;
     });
 

@@ -23,8 +23,8 @@ const validateFirstName = () => {
         inputFirstName.setCustomValidity("Voornaam is verplicht.");
         inputFirstName.reportValidity();
         return false;
-    } else if (inputFirstName.value.length > 60) {
-        inputFirstName.setCustomValidity("Voornaam mag niet langer dan 60 tekens zijn.");
+    } else if (inputFirstName.value.length > 30) {
+        inputFirstName.setCustomValidity("Voornaam mag niet langer dan 30 tekens zijn.");
         inputFirstName.reportValidity();
         return false;
     } else {
@@ -38,8 +38,8 @@ const validateLastName = () => {
         inputLastName.setCustomValidity("Achternaam is verplicht.");
         inputLastName.reportValidity();
         return false;
-    } else if (inputLastName.value.length > 60) {
-        inputLastName.setCustomValidity("Achternaam mag niet langer dan 60 tekens zijn.");
+    } else if (inputLastName.value.length > 30) {
+        inputLastName.setCustomValidity("Achternaam mag niet langer dan 30 tekens zijn.");
         inputLastName.reportValidity();
         return false;
     } else {
@@ -68,8 +68,8 @@ const validateSubject = () => {
 };
 
 const validateMessage = () => {
-    if (inputMessage.value.length < 20 || inputMessage.value.length > 200) {
-        inputMessage.setCustomValidity("Bericht moet tussen 20 en 200 tekens zijn.");
+    if (inputMessage.value.length < 20 || inputMessage.value.length > 600) {
+        inputMessage.setCustomValidity("Bericht moet tussen de 20 en 600 tekens zijn.");
     } else {
         inputMessage.setCustomValidity("");
     }
@@ -122,7 +122,7 @@ const showMessage = (message, isSuccess) => {
     messageContainer.style.backgroundColor = isSuccess ? "green" : "red";
     messageContainer.style.display = "block";
     document.getElementById("contactsection").appendChild(messageContainer);
-    
+
     setTimeout(() => {
         messageContainer.style.display = "none";
     }, 3000);
@@ -146,43 +146,44 @@ form.addEventListener('submit', async function (event) {
     document.getElementById('submitButton').disabled = true;
     showLoader();
 
-    const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
+    grecaptcha.ready(function () {
+        grecaptcha.execute("6Le-OdkqAAAAAK3yUEvUqK7R-LEVFQrvxCiJitLl", { action: 'submit' }).then(async function (token) {
+            const csrfToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
+            const formData = new URLSearchParams();
+            formData.append('email', inputEmail.value);
+            formData.append('firstname', inputFirstName.value);
+            formData.append('lastname', inputLastName.value);
+            formData.append('phone', inputPhone.value);
+            formData.append('subject', inputSubject.value);
+            formData.append('message', inputMessage.value);
+            formData.append('__RequestVerificationToken', csrfToken);
+            formData.append('Recaptcha', token);
+            console.log(token);
+            try {
+                form.reset();
 
-    const formData = new URLSearchParams();
+                const response = await fetch('/contact', {
+                    method: 'POST',
+                    //headers: {
+                    //    'Content-Type': 'application/x-www-form-urlencoded'
+                    //},
+                    body: formData
+                });
 
-    formData.append('email', inputEmail.value);
-    formData.append('firstname', inputFirstName.value);
-    formData.append('lastname', inputLastName.value);
-    formData.append('phone', inputPhone.value);
-    formData.append('subject', inputSubject.value);
-    formData.append('message', inputMessage.value);
-    formData.append('__RequestVerificationToken', csrfToken);
+                if (!response.ok) {
+                    throw new Error('Netwerkrespons was not ok');
+                }
+                hideLoader();
+                showMessage("the form is submitted!", true);
+                console.log("the form is submitted!");
 
-    try {
-        form.reset();
+            } catch (error) {
+                form.reset();
+                console.error('there was a problem with the submited form:', error);
+                hideLoader();
+                showMessage("the form was not submitted", false);
 
-        const response = await fetch('/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formData
+            }
         });
-
-        if (!response.ok) {
-            throw new Error('Netwerkrespons was not ok');
-        }
-        hideLoader();
-        showMessage("the form is submitted!", true);
-        console.log("the form is submitted!");
-
-    } catch (error) {
-        form.reset();
-        console.error('there was a problem with the submited form:', error);
-        hideLoader();
-        showMessage("the form was not submitted", false);
-
-    }
-
-
+    });
 });

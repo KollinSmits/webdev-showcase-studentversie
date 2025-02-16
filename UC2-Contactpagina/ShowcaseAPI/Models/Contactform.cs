@@ -29,6 +29,8 @@ namespace ShowcaseAPI.Models
 
         [Required(ErrorMessage = "The subject is required.")]
         [StringLength(30, ErrorMessage = "The subject can only be 30 characters long.")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "The Subject can only contain letters.")]
+
         public string Subject { get; set; }
 
         [Required(ErrorMessage = "The message is required.")]

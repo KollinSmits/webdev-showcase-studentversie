@@ -2,6 +2,5 @@
 
 namespace Showcase_Profielpagina.Controllers {
     public class RecaptchaController : Controller {
-
     }
 }

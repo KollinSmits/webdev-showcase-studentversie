@@ -31,12 +31,19 @@ namespace Showcase_Profielpagina.Controllers
         // POST: ContactController
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Index(Contactform form)
+        public async Task<ActionResult> Index(Contactform form, string Recaptcha)
         {
             Console.WriteLine("");
             if (!ModelState.IsValid)
             {
                 ViewBag.Message = "De ingevulde velden voldoen niet aan de gestelde voorwaarden";
+                return View();
+            }
+
+            var isRechaptchaValid = await ValidateRecaptcha(Recaptcha);
+
+            if (!isRechaptchaValid) {
+                ViewBag.Message = "reCAPTCHA validatie is mislukt. Probeer het opnieuw.";
                 return View();
             }
 
@@ -57,6 +64,30 @@ namespace Showcase_Profielpagina.Controllers
 
             ViewBag.Message = "Het contactformulier is verstuurd";
             return View();
+        }
+
+        private async Task<bool> ValidateRecaptcha(string recaptchaResponse) {
+            if (string.IsNullOrEmpty(recaptchaResponse)) {
+                return false;
+            }
+
+            using (var client = new HttpClient()) {
+                var requestData = new FormUrlEncodedContent(new[]
+                {
+             new KeyValuePair<string, string>("secret", "6Le-OdkqAAAAAMWAiu3wTTj8YqD_xG4_3nYVaiOq"), // in secrets zetten
+             new KeyValuePair<string, string>("response", recaptchaResponse)
+         });
+
+                var recaptchaResponseMessage = await client.PostAsync("https://www.google.com/recaptcha/api/siteverify", requestData);
+
+                if (!recaptchaResponseMessage.IsSuccessStatusCode) {
+                    return false;
+                }
+
+                var jsonResponse = await recaptchaResponseMessage.Content.ReadAsStringAsync();
+                dynamic JsonRecaptcharespone = JsonConvert.DeserializeObject(jsonResponse);
+                return JsonRecaptcharespone.success == true;
+            }
         }
     }
 }

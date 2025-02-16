@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Contactpagina";
 }
-
+<script src="https://www.google.com/recaptcha/api.js?render=6Le-OdkqAAAAAK3yUEvUqK7R-LEVFQrvxCiJitLl"></script>
 <div class="contactpage">
     <section class="contact" id="contactsection">
         <h1>Contact</h1>
@@ -55,7 +55,7 @@
                           maxlength="200"></textarea>
             </div>
 
-            
+            <input type="hidden" id="recaptcha-response" name="recaptcha-response">
             <div class="form-contactpagina__inputelement">
                 <input type="submit" value="Send!" id="submitButton">
             </div>

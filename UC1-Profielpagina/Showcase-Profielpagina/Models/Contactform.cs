@@ -32,7 +32,7 @@ namespace Showcase_Profielpagina.Models
         public string Subject { get; set; }
 
         [Required(ErrorMessage = "The message is required.")]
-        [StringLength(200, MinimumLength = 20, ErrorMessage = "Your message needs to be between 20 and 200 characters long.")]
+        [StringLength(600, MinimumLength = 20, ErrorMessage = "Your message needs to be between 20 and 600 characters long.")]
         public string Message { get; set; }
     }
 }

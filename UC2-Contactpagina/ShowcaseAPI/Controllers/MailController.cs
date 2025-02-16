@@ -34,10 +34,10 @@ namespace ShowcaseAPI.Controllers {
             if (string.IsNullOrWhiteSpace(contactform.Phone) || !Regex.IsMatch(contactform.Phone, @"^+?[0-9]{10,15}$"))
                 errors.Add("Ongeldig telefoonnummer. Gebruik alleen cijfers en eventueel een landcode.");
 
-            if (string.IsNullOrWhiteSpace(contactform.Subject))
+            if (string.IsNullOrWhiteSpace(contactform.Subject) || !Regex.IsMatch(contactform.Subject, @"^[a-zA-Z]+$"))
                 errors.Add("Onderwerp mag niet leeg zijn.");
 
-            if (string.IsNullOrWhiteSpace(contactform.Message) || contactform.Message.Length < 10)
+            if (string.IsNullOrWhiteSpace(contactform.Message) || contactform.Message.Length < 10 )
                 errors.Add("Bericht moet minimaal 10 tekens bevatten.");
 
             if (errors.IsNullOrEmpty()) {

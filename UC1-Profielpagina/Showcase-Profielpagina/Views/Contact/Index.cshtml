@@ -30,7 +30,8 @@
                 <label for="email">E-mailadres: * </label>
                 <input type="email" asp-for="Email" name="email" id="email" required
                        maxlength="30"
-                       title="Please enter a valid email address.">
+                       title="Please enter a valid email address."
+                       autocomplete="email">
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
@@ -39,17 +40,18 @@
                        minlength="8"
                        maxlength="15"
                        pattern="[0-9]+"
-                       title="Please enter a valid phone number (only digits allowed)">
+                       title="Please enter a valid phone number (only digits allowed)"
+                       autocomplete="tel">
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="Subject">Subject: * </label>
+                <label for="subject">Subject: * </label>
                 <input type="text" asp-for="Subject" name="subject" id="subject" required
                        maxlength="30">
             </div>
 
             <div class="form-contactpagina__inputelement fx-col">
-                <label for="Message">Message: * </label>
+                <label for="message">Message: * </label>
                 <textarea type="textarea" asp-for="Message" name="message" id="message" required
                           minlength="20"
                           maxlength="200"></textarea>
@@ -63,6 +65,6 @@
         @Html.AntiForgeryToken()
     </section>
 </div>
-<script src="/js/form.js"></script>
+<script type="application/x-javascript" src="/js/form.js"></script>
 
 

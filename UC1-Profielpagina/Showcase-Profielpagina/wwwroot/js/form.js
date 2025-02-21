@@ -164,9 +164,6 @@ form.addEventListener('submit', async function (event) {
 
                 const response = await fetch('/contact', {
                     method: 'POST',
-                    //headers: {
-                    //    'Content-Type': 'application/x-www-form-urlencoded'
-                    //},
                     body: formData
                 });
 

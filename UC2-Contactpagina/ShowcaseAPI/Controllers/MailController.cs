@@ -8,7 +8,6 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Numerics;
 using System.Text.RegularExpressions;
 using Microsoft.IdentityModel.Tokens;
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ShowcaseAPI.Controllers {
     [Route("api/[controller]")]
